@@ -1,11 +1,19 @@
-import HomePage from "@/components/pages/HomePage";
+import CardsSection from "@/components/sections/cards.section";
+import HeroSection from "@/components/sections/hero.section";
+import ShowPDFSection from "@/components/sections/showPdf.section";
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
+import ContactSection from "@/components/sections/contact.section";
 
-export default function page() {
+export default function HomePage() {
 	return (
 		<>
 			<Navbar />
-			<HomePage />;
+			<HeroSection />
+			<CardsSection />
+			<ShowPDFSection />
+			<ContactSection />
+			<Footer />
 		</>
 	);
 }

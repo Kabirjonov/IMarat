@@ -29,7 +29,7 @@ export function LanguageSwitcher({ defaultValue }: { defaultValue: string }) {
 			</SelectTrigger>
 			<SelectContent>
 				<SelectItem value='ru'>Русский</SelectItem>
-				<SelectItem value='en'>English</SelectItem>
+				<SelectItem value='uz'>Uzbek</SelectItem>
 			</SelectContent>
 		</Select>
 	);
