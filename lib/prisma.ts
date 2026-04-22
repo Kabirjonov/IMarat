@@ -1,20 +1,19 @@
-// import { PrismaClient } from "@prisma/client";
-// const globalForPrisma = global as unknown as { prisma: PrismaClient };
+import { PrismaClient } from "@/prisma/generated/main/client";
+import { PrismaPg } from "@prisma/adapter-pg";
 
-// const databaseUrl = process.env.DATABASE_URL;
-// if (!databaseUrl) {
-// 	throw new Error("DATABASE_URL is not defined in the environment variables.");
-// }
+const globalForPrisma = global as unknown as {
+	prisma: PrismaClient;
+};
 
-// export const prisma = globalForPrisma.prisma || new PrismaClient({});
+const adapter = new PrismaPg({
+	connectionString: process.env.DATABASE_URL!, // pooler (6543)
+});
 
-// if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
-
-import { PrismaClient } from "@prisma/client";
-
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-
-export const prisma = globalForPrisma.prisma ?? new PrismaClient();
+export const prisma =
+	globalForPrisma.prisma ||
+	new PrismaClient({
+		adapter,
+	});
 
 if (process.env.NODE_ENV !== "production") {
 	globalForPrisma.prisma = prisma;

@@ -1,4 +1,5 @@
 "use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,26 +13,14 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { loginAction } from "@/app/auth/actions";
 
 export function LoginForm({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
-	const [formData, setFormData] = useState({
-		email: "",
-		password: "",
-	});
 	const [showPassword, setShowPassword] = useState(false);
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		e.preventDefault();
-		const { name, value } = e.target;
-		setFormData(prev => ({ ...prev, [name]: value }));
-	};
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		// const result = await loginUser(formData);
-		// console.log("User created:", result);
-	};
+
 	return (
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
 			<Card>
@@ -41,44 +30,45 @@ export function LoginForm({
 						Enter your email below to login to your account
 					</CardDescription>
 				</CardHeader>
+
 				<CardContent>
-					<form onSubmit={handleSubmit}>
+					<form action={loginAction}>
 						<FieldGroup>
 							<Field>
 								<FieldLabel htmlFor='email'>Email</FieldLabel>
 								<Input
 									id='email'
 									type='email'
+									name='email'
 									placeholder='info@imarat.uz'
 									required
-									onChange={handleChange}
-									name='email'
 								/>
 							</Field>
+
 							<Field>
-								<div className='flex items-center'>
-									<FieldLabel htmlFor='password'>Password</FieldLabel>
-								</div>
+								<FieldLabel htmlFor='password'>Password</FieldLabel>
+
 								<div className='relative w-full'>
 									<Input
 										id='password'
-										type={showPassword ? "text" : "password"}
-										placeholder={showPassword ? "password" : "********"}
-										required
-										onChange={handleChange}
 										name='password'
+										type={showPassword ? "text" : "password"}
+										placeholder='********'
+										required
 									/>
+
 									<Button
 										type='button'
 										variant='ghost'
 										size='icon'
-										onClick={() => setShowPassword(!showPassword)}
-										className='absolute right-2 '
+										onClick={() => setShowPassword(v => !v)}
+										className='absolute right-2 top-1/2 -translate-y-1/2'
 									>
 										{showPassword ? <EyeOff /> : <Eye />}
 									</Button>
 								</div>
 							</Field>
+
 							<Field>
 								<Button type='submit'>Login</Button>
 							</Field>

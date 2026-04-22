@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitch";
-import { signOutUser } from "@/actions/auth.action";
 
 const navLinks = [
 	{ href: "/", label: "Bosh sahifa" },
@@ -40,9 +39,9 @@ export default function Navbar() {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
-	const handleSignOut = async () => {
-		await signOutUser();
-	};
+	// const handleSignOut = async () => {
+	// 	await signOutUser();
+	// };
 	return (
 		<motion.nav
 			initial={{ y: -60, opacity: 0 }}
@@ -50,7 +49,7 @@ export default function Navbar() {
 			transition={{ duration: 0.7, ease: "easeOut" }}
 			className='w-full sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border shadow-sm'
 		>
-			<div className='container mx-auto flex items-center justify-between h-16 px-4'>
+			<div className='W-[90%] mx-auto flex items-center justify-between h-16 px-4'>
 				{/* Logo */}
 
 				{/* Navigation links */}
@@ -64,14 +63,14 @@ export default function Navbar() {
 							{link.label}
 						</Link>
 					))}
-					<Button
+					{/* <Button
 						size='sm'
 						variant='outline'
 						className='ml-4'
 						onClick={handleSignOut}
 					>
 						Sign Out
-					</Button>
+					</Button> */}
 				</div>
 				<Link
 					href='/'

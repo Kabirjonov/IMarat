@@ -1,98 +1,96 @@
-import React from "react";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { FaInstagram, FaFacebook } from "react-icons/fa";
-
+import { Send } from "lucide-react";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+const images = [
+	"/office.webp",
+	"/office.webp",
+	"/hero_bg.jpg",
+	"/hero_bg.jpg",
+	"/office.webp",
+	"/hero_bg.jpg",
+];
 export default function Footer() {
+	const socialLinks = [
+		{ name: "Telegram", url: "#", icon: Send },
+		{ name: "Instagram", url: "#", icon: FaInstagram },
+		{ name: "Facebook", url: "#", icon: FaFacebook },
+		{ name: "YouTube", url: "#", icon: FaYoutube },
+	];
+
 	return (
-		<footer
-			id='contact'
-			className='w-full mt-20 bg-primary text-white pt-14 pb-6'
-		>
-			<div className='max-w-7xl mx-auto px-6 grid lg:grid-cols-3 gap-10'>
-				{/* 1. Company Info */}
-				<div className='flex flex-col gap-4'>
-					<h3 className='text-2xl font-bold tracking-wide'>
-						Imarat Development
-					</h3>
-
-					<p className='text-sm text-white/70 leading-relaxed max-w-sm'>
-						Zamonaviy qurilish va development xizmatlari. Sifat va ishonch –
-						bizning ustuvor yo‘nalishimiz.
-					</p>
-
-					<div className='flex flex-col gap-2 mt-2'>
-						<div className='flex items-center gap-2 text-sm'>
-							<Phone size={16} />
-							<span>+998 90 123 45 67</span>
-						</div>
-
-						<div className='flex items-center gap-2 text-sm'>
-							<Mail size={16} />
-							<span>info@imarat.uz</span>
-						</div>
-
-						<div className='flex items-center gap-2 text-sm'>
-							<MapPin size={16} />
-							<span>Toshkent shahri</span>
-						</div>
-					</div>
-				</div>
-
-				{/* 2. Office */}
-				<div className='flex flex-col gap-4'>
-					<h3 className='text-xl font-semibold'>Bosh qarorgoh</h3>
-
-					<div className='overflow-hidden rounded-2xl shadow-lg group'>
-						<img
-							src='/office.webp'
-							alt='Office'
-							className='w-full h-52 object-cover group-hover:scale-105 transition duration-500'
-						/>
-					</div>
-
-					<p className='text-sm text-white/70'>
-						Markaziy ofis — Toshkent shahri
-					</p>
-				</div>
-
-				{/* 3. Contact + Map */}
-				<div className='flex flex-col gap-5'>
-					<h3 className='text-xl font-semibold'>Biz bilan bog‘laning</h3>
-
-					{/* Social */}
-					<div className='flex gap-4'>
+		<footer id='contact'>
+			<div className='max-w-[90%] mx-auto flex justify-center items-center py-6 '>
+				<div className='flex gap-8 mt-4'>
+					{socialLinks.map(link => (
 						<a
-							href='https://facebook.com'
+							key={link.name}
+							href={link.url}
 							target='_blank'
-							className='p-2 rounded-full bg-white/10 hover:bg-white/20 transition'
+							rel='noopener noreferrer'
 						>
-							<FaFacebook size={18} />
+							<link.icon
+								size={28}
+								className='text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline'
+							/>
 						</a>
-
-						<a
-							href='https://instagram.com'
-							target='_blank'
-							className='p-2 rounded-full bg-white/10 hover:bg-white/20 transition'
-						>
-							<FaInstagram size={18} />
-						</a>
-					</div>
-
-					{/* Map */}
-					<div className='w-full h-44 rounded-2xl overflow-hidden shadow-md border border-white/10'>
-						<iframe
-							src='https://yandex.uz/map-widget/v1/?ll=69.2401%2C41.2995&z=12'
-							width='100%'
-							height='100%'
-							frameBorder='0'
-						/>
-					</div>
+					))}
 				</div>
 			</div>
+			<div className='bg-primary text-gray-300  p-8 '>
+				{/* <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[90%] mx-auto'> */}
+				<div
+					className='max-w-[90%] mx-auto 
+                  grid grid-cols-1 md:grid-cols-2 
+                  lg:flex lg:justify-between lg:items-start gap-6'
+				>
+					{/* Left */}
+					<div>
+						<img
+							src='/whitelogo.png'
+							alt='Company Logo'
+							className='w-52 mb-4'
+						/>
+						{/* <h2 className='text-white text-lg font-semibold mb-3'>maker</h2> */}
+						<p className='text-sm leading-relaxed'>
+							Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim.
+							In hac habitasse platea dictumst. Nullam commodo eu erat.
+						</p>
+						<p className='text-xs mt-4'>© 2016 Maker Pty Ltd.</p>
+					</div>
 
-			{/* Divider */}
-			<div className='border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/60'>
-				© 2024 Imarat Development. All rights reserved.
+					{/* Center (lg da yashirin) */}
+					<div className='hidden md:block'>
+						<h3 className='text-white font-semibold mb-3'>MEET MAKER</h3>
+						<ul className='space-y-2 text-sm'>
+							<li>About Maker</li>
+							<li>Explore our Ecosystem</li>
+							<li>Careers</li>
+							<li>Community Meetups</li>
+							<li>Help Center</li>
+							<li>Contact Us</li>
+						</ul>
+					</div>
+
+					{/* Right */}
+					<div>
+						<h3 className='text-white font-semibold mb-3'>PHOTOGALLERY</h3>
+						<div className='grid grid-cols-3 gap-2'>
+							{images.map((src, index) => (
+								<img
+									key={index}
+									src={src}
+									alt={`Gallery ${index + 1}`}
+									className='w-full h-20 object-cover rounded'
+								/>
+							))}
+						</div>
+					</div>
+				</div>
+
+				{/* Bottom text */}
+				<div className='text-center text-sm text-gray-400  mt-6 mb-4'>
+					Footer text here
+				</div>
 			</div>
 		</footer>
 	);

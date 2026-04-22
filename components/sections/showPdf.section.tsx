@@ -63,17 +63,18 @@ export default function ShowPDFSection() {
 		>
 			{/* TITLE */}
 			<div className='max-w-4xl mx-auto text-center mb-8'>
-				<h2 className='font-bold text-2xl sm:text-3xl md:text-5xl'>
+				{/* <h2 className='font-bold text-2xl sm:text-3xl md:text-5xl'>
 					<span className='font-sans'>Imarat development</span> toliq
-				</h2>
+				</h2> */}
+				<img src='/logo.png' alt='Company Logo' className='w-52' />
 
-				<Button variant='link' className='mt-4'>
+				<Button variant='link' className=''>
 					Download PDF
 				</Button>
 			</div>
 
 			{/* CAROUSEL */}
-			<div className='w-full max-w-6xl'>
+			<div className='w-full max-w-[90%] mx-auto'>
 				<Carousel
 					opts={{ align: "start" }}
 					plugins={[plugin.current]}
