@@ -18,7 +18,7 @@ model User {
 }
 
 model Project{
-   id          String   @id @default(uuid())
+  id          String   @id @default(uuid())
   title       String
   slug        String   @unique
   description String
@@ -27,13 +27,12 @@ model Project{
   images      String[] // first image = cover
 
   address     String
-  latitude    Float?
-  longitude   Float?
-
+  // latitude    Float?
+  // longitude   Float?
+  location    [Float, Float]?
   type        ProjectType
   status      ProjectStatus
 
-  priceFrom   Float?
   area        Float?
   rooms       Int?
 

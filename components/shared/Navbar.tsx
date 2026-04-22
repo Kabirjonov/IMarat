@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitch";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const navLinks = [
 	{ href: "/", label: "Bosh sahifa" },
@@ -39,9 +40,10 @@ export default function Navbar() {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
-	// const handleSignOut = async () => {
-	// 	await signOutUser();
-	// };
+	const { data: session, status } = useSession();
+	const handleSignOut = async () => {
+		await signOut();
+	};
 	return (
 		<motion.nav
 			initial={{ y: -60, opacity: 0 }}
@@ -49,7 +51,7 @@ export default function Navbar() {
 			transition={{ duration: 0.7, ease: "easeOut" }}
 			className='w-full sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border shadow-sm'
 		>
-			<div className='W-[90%] mx-auto flex items-center justify-between h-16 px-4'>
+			<div className='w-[90%] mx-auto flex items-center justify-between h-16 px-4'>
 				{/* Logo */}
 
 				{/* Navigation links */}
@@ -100,6 +102,7 @@ export default function Navbar() {
 					{/* <Button size='sm' variant='outline' className='hidden md:inline-flex'>
 						Bog'lanish
 					</Button> */}
+
 					<Button
 						size='default'
 						className='hidden md:inline-flex'
@@ -107,6 +110,11 @@ export default function Navbar() {
 					>
 						Bog'lanish
 					</Button>
+					{status === "authenticated" && (
+						<Button size='sm' variant='outline' onClick={handleSignOut}>
+							Sign Out
+						</Button>
+					)}
 				</div>
 			</div>
 		</motion.nav>

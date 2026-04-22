@@ -1,5 +1,5 @@
 import { Send } from "lucide-react";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaPhone, FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 const images = [
 	"/office.webp",
@@ -9,14 +9,14 @@ const images = [
 	"/office.webp",
 	"/hero_bg.jpg",
 ];
+export const socialLinks = [
+	{ name: "Telegram", url: "#", icon: Send },
+	{ name: "Instagram", url: "#", icon: FaInstagram },
+	{ name: "Facebook", url: "#", icon: FaFacebook },
+	{ name: "YouTube", url: "#", icon: FaYoutube },
+	{ name: "Phone", url: "#", icon: FaPhone },
+];
 export default function Footer() {
-	const socialLinks = [
-		{ name: "Telegram", url: "#", icon: Send },
-		{ name: "Instagram", url: "#", icon: FaInstagram },
-		{ name: "Facebook", url: "#", icon: FaFacebook },
-		{ name: "YouTube", url: "#", icon: FaYoutube },
-	];
-
 	return (
 		<footer id='contact'>
 			<div className='max-w-[90%] mx-auto flex justify-center items-center py-6 '>

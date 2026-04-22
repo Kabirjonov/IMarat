@@ -1,4 +1,5 @@
 import React from "react";
+import { socialLinks } from "../shared/Footer";
 
 export default function ContactSection() {
 	return (
@@ -12,12 +13,12 @@ export default function ContactSection() {
 			<div className='max-w-[90%] mx-auto grid md:grid-cols-2 gap-10'>
 				{/* Left: Office Info */}
 				<div className='bg-white rounded-2xl shadow p-6'>
-					<h2 className='text-2xl font-semibold mb-4'>Bosh ofis</h2>
+					{/* <h2 className='text-2xl font-semibold mb-4'>Bosh ofis</h2> */}
 
 					<img
 						src='/office.webp'
 						alt='Office'
-						className='w-full h-56 object-cover rounded-xl mb-4'
+						className='w-full h-60 object-cover rounded-xl mb-4'
 					/>
 
 					<p className='text-gray-600 mb-2'>
@@ -27,15 +28,19 @@ export default function ContactSection() {
 
 					{/* Social Links */}
 					<div className='flex gap-4 mt-4'>
-						<a href='#' className='text-blue-600 hover:underline'>
-							Telegram
-						</a>
-						<a href='#' className='text-pink-600 hover:underline'>
-							Instagram
-						</a>
-						<a href='#' className='text-blue-800 hover:underline'>
-							Facebook
-						</a>
+						{socialLinks.map(link => (
+							<a
+								key={link.name}
+								href={link.url}
+								target='_blank'
+								rel='noopener noreferrer'
+							>
+								<link.icon
+									size={24}
+									className='text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline'
+								/>
+							</a>
+						))}
 					</div>
 				</div>
 
