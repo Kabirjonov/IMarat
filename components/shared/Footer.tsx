@@ -10,11 +10,23 @@ export const OfficeImages = [
 	"/hero_bg.jpg",
 ];
 export const socialLinks = [
-	{ name: "Telegram", url: "#", icon: Send },
-	{ name: "Instagram", url: "#", icon: FaInstagram },
-	{ name: "Facebook", url: "#", icon: FaFacebook },
-	{ name: "YouTube", url: "#", icon: FaYoutube },
-	{ name: "Phone", url: "#", icon: FaPhone },
+	{ name: "Telegram", url: "https://t.me/imarat_development", icon: Send },
+	{
+		name: "Instagram",
+		url: "https://instagram.com/imarat.development",
+		icon: FaInstagram,
+	},
+	{
+		name: "Facebook",
+		url: "https://facebook.com/imaratdevelopment",
+		icon: FaFacebook,
+	},
+	{
+		name: "YouTube",
+		url: "https://youtube.com/@imaratdevelopment",
+		icon: FaYoutube,
+	},
+	{ name: "Phone", url: "tel:+998901234567", icon: FaPhone },
 ];
 export default function Footer() {
 	return (

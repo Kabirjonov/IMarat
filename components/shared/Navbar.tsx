@@ -11,11 +11,11 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-	{ href: "/", label: "Bosh sahifa" },
-	{ href: "#projects", label: "Loyihalar" },
-	{ href: "#about", label: "Biz haqimizda" },
-	// { href: "#news", label: "Yangiliklar" },
-	{ href: "#contact", label: "Kontaktlar" },
+	{ id: "hero", label: "Bosh sahifa" },
+	{ id: "projects", label: "Loyihalar" },
+	{ id: "about", label: "Biz haqimizda" },
+	// { id: "#news", label: "Yangiliklar" },
+	{ id: "contact", label: "Kontaktlar" },
 ];
 
 export default function Navbar() {
@@ -24,6 +24,31 @@ export default function Navbar() {
 	const path = usePathname();
 
 	const router = useRouter();
+	const [activeSection, setActiveSection] = useState("home");
+
+	useEffect(() => {
+		const sections = navLinks.map(l => document.getElementById(l.id));
+
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						setActiveSection(entry.target.id);
+					}
+				});
+			},
+			{
+				root: null,
+				threshold: 0.5, // section 50% ko‘rinsa active bo‘ladi
+			},
+		);
+
+		sections.forEach(sec => {
+			if (sec) observer.observe(sec);
+		});
+
+		return () => observer.disconnect();
+	}, []);
 	useEffect(() => {
 		if (clickCount === 3) {
 			router.push("/auth");
@@ -74,13 +99,24 @@ export default function Navbar() {
 					)}
 				>
 					{navLinks.map(link => (
-						<Link
-							key={link.href}
-							href={link.href}
-							className='text-sm font-medium text-muted-foreground hover:text-primary transition-colors'
+						<p
+							// key={link.href}
+							// href={link.href}
+							onClick={() => {
+								document.getElementById(link.id)?.scrollIntoView({
+									behavior: "smooth",
+								});
+							}}
+							// className='text-sm font-medium text-muted-foreground hover:text-primary transition-colors'
+							className={cn(
+								"text-sm font-medium transition-colors",
+								activeSection === link.id
+									? "text-primary"
+									: "text-muted-foreground hover:text-primary",
+							)}
 						>
 							{link.label}
-						</Link>
+						</p>
 					))}
 				</div>
 				<Link

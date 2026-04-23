@@ -15,80 +15,32 @@ export default function ContactSection() {
 				Kontaktlar
 			</h1>
 			<div className='max-w-[90%] mx-auto grid md:grid-cols-2 gap-10'>
-				{/* Left: Office Info */}
-				<div className='bg-white rounded-2xl shadow relative '>
-					{/* <h2 className='text-2xl font-semibold mb-4'>Bosh ofis</h2> */}
-					<Carousel
-						className=' overflow-hidden'
-						opts={{ align: "start", loop: true }}
-					>
-						<CarouselContent>
-							{OfficeImages.map((src, index) => (
-								<CarouselItem key={index}>
-									<div className='w-full h-90'>
-										<img
-											src={src}
-											alt={`Gallery ${index + 1}`}
-											className='w-full h-90 object-cover rounded-xl'
-										/>
+				<div className='bg-white rounded-2xl shadow overflow-hidden'>
+					<img src={OfficeImages[0]} className='w-full h-64 object-cover' />
 
-										{/* OVERLAY */}
-										<div className='absolute inset-0 bg-black/50 text-white p-5 flex flex-col justify-end rounded-xl'>
-											<p className='text-lg font-semibold mb-2'>Contact Info</p>
+					{/* Info section BELOW images */}
+					<div className='p-5'>
+						<h3 className='text-xl font-semibold mb-3'>Bosh ofis</h3>
 
-											<ul className='space-y-1 text-sm mb-3'>
-												<li>About Maker</li>
-												<li>Explore our Ecosystem</li>
-												<li>Careers</li>
-												<li>Community Meetups</li>
-												<li>Help Center</li>
-												<li>Contact Us</li>
-											</ul>
+						<ul className='text-sm text-gray-600 space-y-2 mb-4'>
+							<li>📍 Toshkent shahri, Yunusobod tumani</li>
+							<li>📞 +998 90 123 45 67</li>
+							<li>✉️ info@company.com</li>
+						</ul>
 
-											<div className='flex gap-3'>
-												{socialLinks.map(link => (
-													<a
-														key={link.name}
-														href={link.url}
-														target='_blank'
-														rel='noopener noreferrer'
-													>
-														<link.icon
-															size={24}
-															className='text-white hover:text-primary transition'
-														/>
-													</a>
-												))}
-											</div>
-										</div>
-									</div>
-								</CarouselItem>
+						<div className='flex gap-3'>
+							{socialLinks.map(link => (
+								<a key={link.name} href={link.url} target='_blank'>
+									<link.icon
+										className='text-gray-600 hover:text-primary'
+										size={22}
+									/>
+								</a>
 							))}
-						</CarouselContent>
-					</Carousel>
-					{/* <p className='text-gray-600 mb-2'>
-						Toshkent shahri, Yunusobod tumani
-					</p>
-					<p className='text-gray-600 mb-4'>Tel: +998 90 123 45 67</p>
-
-					<div className='flex gap-4 mt-4'>
-						{socialLinks.map(link => (
-							<a
-								key={link.name}
-								href={link.url}
-								target='_blank'
-								rel='noopener noreferrer'
-							>
-								<link.icon
-									size={24}
-									className='text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline'
-								/>
-							</a>
-						))}
-					</div> */}
+						</div>
+					</div>
 				</div>
-
-				<div className='bg-white rounded-2xl shadow '>
+				<div className='bg-white rounded-2xl shadow overflow-hidden'>
 					{/* <iframe
 						title='Yandex Map'
 						src='https://yandex.com/map-widget/v1/?ll=69.298403%2C41.241297&z=12'
@@ -103,10 +55,10 @@ export default function ContactSection() {
 						<Map
 							defaultState={{
 								center: [41.243498, 69.299256],
-								zoom: 12,
+								zoom: 13,
 							}}
 							width='100%'
-							height={300}
+							height={450}
 						>
 							<Placemark geometry={[41.243498, 69.299256]} />
 						</Map>
