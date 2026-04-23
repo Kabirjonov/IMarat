@@ -47,7 +47,8 @@ export default function ProductCard({ project }: { project: IProject }) {
 			<h3 className='text-xl font-bold mb-2 flex justify-between'>
 				{project.title}
 				<a
-					href={`https://yandex.com/maps/?pt=${project.coords?.[1]},${project.coords?.[0]}&z=15`}
+					// href={`https://yandex.com/maps/?pt=${project.latitude},${project.longitude}&z=15`}
+					href={`https://yandex.com/maps/?pt=${project.longitude},${project.latitude}&z=15`}
 					target='_blank'
 					rel='noopener noreferrer'
 					className='text-primary text truncate w-1/2 text-right'

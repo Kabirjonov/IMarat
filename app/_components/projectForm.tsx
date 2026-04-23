@@ -21,7 +21,9 @@ import { FiPlusCircle, FiMapPin } from "react-icons/fi";
 export default function ProjectForm({ project, onDone }: any) {
 	const isEdit = !!project;
 	const [coords, setCoords] = useState<[number, number] | null>(
-		project?.coords || null,
+		project?.latitude && project?.longitude
+			? [project.latitude, project.longitude]
+			: null,
 	);
 	const handleMapClick = (e: any) => {
 		const c = e.get("coords");
@@ -139,6 +141,7 @@ export default function ProjectForm({ project, onDone }: any) {
 						{/* <div className='flex items-center justify-between gap-2'> */}
 						<Select
 							name='type'
+							value={form.type}
 							onValueChange={v => setForm({ ...form, type: v })}
 						>
 							<SelectTrigger>
@@ -153,6 +156,7 @@ export default function ProjectForm({ project, onDone }: any) {
 						</Select>
 						<Select
 							name='status'
+							value={form.status}
 							onValueChange={v => setForm({ ...form, status: v })}
 						>
 							<SelectTrigger>

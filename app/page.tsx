@@ -12,7 +12,7 @@ export default async function HomePage() {
 		<>
 			<Navbar />
 			<HeroSection />
-			<CardsSection projects={projects} />
+			<CardsSection projects={projects} loading={false} />
 			<ShowPDFSection />
 			<ContactSection />
 			<Footer />

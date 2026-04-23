@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitch";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Role } from "@/types";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
 	{ href: "/", label: "Bosh sahifa" },
@@ -19,10 +21,12 @@ const navLinks = [
 export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
 	const [clickCount, setClickCount] = useState(0);
+	const path = usePathname();
 
+	const router = useRouter();
 	useEffect(() => {
 		if (clickCount === 3) {
-			window.location.href = "/auth"; // login page
+			router.push("/auth");
 			setClickCount(0);
 		}
 		if (clickCount === 0) return;
@@ -34,15 +38,24 @@ export default function Navbar() {
 		return () => clearTimeout(timer);
 	}, [clickCount]);
 	useEffect(() => {
+		let ticking = false;
+
 		const handleScroll = () => {
-			setScrolled(window.scrollY > 50);
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					setScrolled(window.scrollY > 50);
+					ticking = false;
+				});
+				ticking = true;
+			}
 		};
 
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 	const { data: session, status } = useSession();
-
+	const isAdminPage = path.startsWith("/admin");
+	console.log("Session:", session);
 	return (
 		<motion.nav
 			initial={{ y: -60, opacity: 0 }}
@@ -54,7 +67,12 @@ export default function Navbar() {
 				{/* Logo */}
 
 				{/* Navigation links */}
-				<div className='hidden md:flex gap-6'>
+				<div
+					className={cn(
+						"hidden md:flex gap-6",
+						path === "/admin" && "opacity-0",
+					)}
+				>
 					{navLinks.map(link => (
 						<Link
 							key={link.href}
@@ -64,14 +82,6 @@ export default function Navbar() {
 							{link.label}
 						</Link>
 					))}
-					{/* <Button
-						size='sm'
-						variant='outline'
-						className='ml-4'
-						onClick={handleSignOut}
-					>
-						Sign Out
-					</Button> */}
 				</div>
 				<Link
 					href='/'
@@ -98,23 +108,25 @@ export default function Navbar() {
 				{/* Actions: Language switcher & CTA */}
 				<div className='flex items-center gap-3'>
 					<LanguageSwitcher defaultValue='ru' />
-					{/* <Button size='sm' variant='outline' className='hidden md:inline-flex'>
-						Bog'lanish
-					</Button> */}
 
 					{session?.user?.role === Role.ADMIN ? (
-						<Button size='sm' onClick={() => (window.location.href = "/admin")}>
-							Admin Panel
-						</Button>
-					) : (
-						<Button
-							size='default'
-							className='hidden md:inline-flex'
-							onClick={() => setClickCount(prev => prev + 1)}
-						>
-							Bog'lanish
-						</Button>
-					)}
+						isAdminPage ? (
+							<Button size='sm' onClick={() => router.push("/")}>
+								Home Panel
+							</Button>
+						) : (
+							<Button size='sm' onClick={() => router.push("/admin")}>
+								Admin Panel
+							</Button>
+						)
+					) : null}
+					<Button
+						size='default'
+						className='hidden md:inline-flex'
+						onClick={() => setClickCount(prev => prev + 1)}
+					>
+						Bog'lanish
+					</Button>
 				</div>
 			</div>
 		</motion.nav>

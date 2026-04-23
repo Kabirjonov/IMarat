@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function HeroSection() {
 	// const t = getTranslations("home");
@@ -32,9 +33,11 @@ export default function HeroSection() {
 				<p className='text-lg md:text-xl mb-8'>
 					Biz zamonaviy, ishonchli va sifatli uylarni quramiz va sotamiz.
 				</p>
-				<Button size='lg' className='px-8 py-6'>
-					Loyihalarni ko‘rish
-				</Button>
+				<Link href='#projects'>
+					<Button size='lg' className='px-8 py-6'>
+						Loyihalarni ko‘rish
+					</Button>
+				</Link>
 			</motion.div>
 			{/* <motion.div
 				initial={{ opacity: 0, scale: 0.95 }}

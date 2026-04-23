@@ -98,7 +98,8 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 									<TableCell className='font-medium'>{p.type}</TableCell>
 									<TableCell className='font-medium'>
 										<a
-											href={`https://yandex.com/maps/?pt=${p.coords?.[1]},${p.coords?.[0]}&z=15`}
+											// href={`https://yandex.com/maps/?pt=${p.latitude},${p.longitude}&z=15`}
+											href={`https://yandex.com/maps/?pt=${p.longitude},${p.latitude}&z=15`}
 											target='_blank'
 											className='text-primary text truncate w-1/2 text-right'
 											rel='noopener noreferrer'

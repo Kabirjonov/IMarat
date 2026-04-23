@@ -1,7 +1,7 @@
 import { Send } from "lucide-react";
 import { FaInstagram, FaPhone, FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
-const images = [
+export const OfficeImages = [
 	"/office.webp",
 	"/office.webp",
 	"/hero_bg.jpg",
@@ -59,7 +59,7 @@ export default function Footer() {
 					</div>
 
 					{/* Center (lg da yashirin) */}
-					<div className='hidden md:block'>
+					{/* <div className='hidden md:block'>
 						<h3 className='text-white font-semibold mb-3'>MEET MAKER</h3>
 						<ul className='space-y-2 text-sm'>
 							<li>About Maker</li>
@@ -69,13 +69,13 @@ export default function Footer() {
 							<li>Help Center</li>
 							<li>Contact Us</li>
 						</ul>
-					</div>
+					</div> */}
 
 					{/* Right */}
 					<div>
 						<h3 className='text-white font-semibold mb-3'>PHOTOGALLERY</h3>
 						<div className='grid grid-cols-3 gap-2'>
-							{images.map((src, index) => (
+							{OfficeImages.map((src, index) => (
 								<img
 									key={index}
 									src={src}
@@ -88,8 +88,8 @@ export default function Footer() {
 				</div>
 
 				{/* Bottom text */}
-				<div className='text-center text-sm text-gray-400  mt-6 mb-4'>
-					Footer text here
+				<div className='text-center border-t border-muted text-sm text-gray-400  mt-6 pt-4'>
+					© 2026 Imarat. All rights reserved.
 				</div>
 			</div>
 		</footer>

@@ -13,6 +13,7 @@ export async function deleteProject(id: string) {
 
 export async function upsertProject(id: string | null, data: FormData) {
 	const coordsRaw = data.get("coords") as string;
+	const coords = coordsRaw ? JSON.parse(coordsRaw) : null;
 	const payload = {
 		title: data.get("title") as string,
 		slug: slugify(data.get("title") as string, { lower: true }),
@@ -21,7 +22,9 @@ export async function upsertProject(id: string | null, data: FormData) {
 		address: data.get("address") as string,
 		type: data.get("type") as any,
 		status: data.get("status") as any,
-		coords: coordsRaw ? JSON.parse(coordsRaw) : null,
+		images: (data.get("images") as string).split(",").map(s => s.trim()),
+		latitude: coords ? coords[0] : null,
+		longitude: coords ? coords[1] : null,
 	};
 	if (id) {
 		await prisma.project.update({

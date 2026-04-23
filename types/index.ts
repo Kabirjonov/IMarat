@@ -10,7 +10,8 @@ export interface IProject {
 	images: string[];
 	createdAt: Date;
 	updatedAt: Date;
-
+	longitude: number | null;
+	latitude: number | null;
 	address: string;
 	slug: string;
 	coords?: [number, number] | null; // [latitude, longitude]

@@ -1,17 +1,14 @@
 "use client";
-import { Search, MapPin, List } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Search, List } from "lucide-react";
 import Link from "next/link";
 
 import { Input } from "../ui/input";
 import { IProject } from "@/types";
 import ProductCard from "../cards/ProductCard";
+import { ProductCardSkeleton } from "../loadings/ProductCardSkeleton";
 
 const searchLinks = [
-	{
-		label: "REGION bo‘yicha qidirish",
-		icon: MapPin,
-		href: "/search?by=region",
-	},
 	{
 		label: "KATEGORIYA bo‘yicha qidirish",
 		icon: List,
@@ -19,10 +16,25 @@ const searchLinks = [
 	},
 ];
 
-export default function CardsSection({ projects }: { projects: IProject[] }) {
+export default function CardsSection({
+	projects,
+	loading,
+}: {
+	projects: IProject[];
+	loading: boolean;
+}) {
+	const [search, setSearch] = useState("");
+
+	// 🔍 filter qilingan list
+	const filteredProjects = useMemo(() => {
+		return projects.filter(project =>
+			project.title?.toLowerCase().includes(search.toLowerCase()),
+		);
+	}, [projects, search]);
+
 	return (
-		<section id='projects' className='max-w-[90%] mx-auto w-full pb-16'>
-			<div className='w-full flex items-center justify-between py-6 px-2  '>
+		<section id='projects' className='max-w-[90%] mx-auto w-full '>
+			<div className='w-full flex items-center justify-between py-6 px-2'>
 				<div className='flex gap-4'>
 					{searchLinks.map(item => (
 						<Link
@@ -35,18 +47,37 @@ export default function CardsSection({ projects }: { projects: IProject[] }) {
 						</Link>
 					))}
 				</div>
-				<div className='flex items-center cursor-pointer gap-2 text-xs font-semibold uppercase tracking-wider text-foreground hover:text-primary transition-colors'>
+
+				{/* 🔍 SEARCH */}
+				<div className='flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground'>
 					<Input
-						placeholder='Barcha loyihalarni ko‘rish'
+						placeholder='Loyihalarni qidirish...'
 						className='w-full py-0'
+						value={search}
+						onChange={e => setSearch(e.target.value)}
 					/>
-					<Search className='w-4 h-4 ' />
+					<Search className='w-4 h-4' />
 				</div>
 			</div>
+
 			<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-				{projects.map((project, index) => (
-					<ProductCard key={index} project={project} />
-				))}
+				{loading &&
+					Array.from({ length: 8 }).map((_, i) => (
+						<ProductCardSkeleton key={i} />
+					))}
+
+				{/* EMPTY */}
+				{!loading && filteredProjects.length === 0 && (
+					<div className='col-span-full text-center py-10 text-muted-foreground'>
+						Ma’lumot topilmadi
+					</div>
+				)}
+
+				{/* DATA */}
+				{!loading &&
+					filteredProjects.map((project, index) => (
+						<ProductCard key={index} project={project} />
+					))}
 			</div>
 		</section>
 	);
