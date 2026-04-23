@@ -10,10 +10,10 @@ export interface IProject {
 	images: string[];
 	createdAt: Date;
 	updatedAt: Date;
-	location: [number, number] | null; // [latitude, longitude]
 
 	address: string;
 	slug: string;
+	coords?: [number, number] | null; // [latitude, longitude]
 
 	type: string;
 	status: string;
@@ -22,3 +22,16 @@ export interface IProject {
 	area?: number | null;
 	shortDesc?: string | null;
 }
+
+export interface IUser {
+	id: string;
+	email: string;
+	password: string;
+	role: Role;
+}
+type Role = "USER" | "ADMIN" | "SUPERADMIN";
+export const Role = {
+	USER: "USER",
+	ADMIN: "ADMIN",
+	SUPERADMIN: "SUPERADMIN",
+} as const;

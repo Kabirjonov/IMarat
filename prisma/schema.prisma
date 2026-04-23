@@ -1,12 +1,13 @@
 generator client {
-  provider = "prisma-client"
+  provider   = "prisma-client"
+  output     = "./generated/main"
   engineType = "client"
-  output   = "./generated/main"
 }
 
 datasource db {
   provider = "postgresql"
 }
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -14,30 +15,27 @@ model User {
   role      UserRole @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
   @@map("users")
 }
 
-model Project{
-  id          String   @id @default(uuid())
+model Project {
+  id          String        @id @default(uuid())
   title       String
-  slug        String   @unique
+  slug        String        @unique
   description String
   shortDesc   String?
-
-  images      String[] // first image = cover
-
+  images      String[]
   address     String
-  // latitude    Float?
-  // longitude   Float?
-  location    [Float, Float]?
+  latitude    Float?
+  longitude   Float?
   type        ProjectType
   status      ProjectStatus
-
+  priceFrom   Float?
   area        Float?
   rooms       Int?
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 enum ProjectType {
@@ -52,6 +50,7 @@ enum ProjectStatus {
   construction
   finished
 }
+
 enum UserRole {
   USER
   ADMIN

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/shared/LanguageSwitch";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Role } from "@/types";
 
 const navLinks = [
 	{ href: "/", label: "Bosh sahifa" },
@@ -41,9 +42,7 @@ export default function Navbar() {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 	const { data: session, status } = useSession();
-	const handleSignOut = async () => {
-		await signOut();
-	};
+
 	return (
 		<motion.nav
 			initial={{ y: -60, opacity: 0 }}
@@ -103,16 +102,17 @@ export default function Navbar() {
 						Bog'lanish
 					</Button> */}
 
-					<Button
-						size='default'
-						className='hidden md:inline-flex'
-						onClick={() => setClickCount(prev => prev + 1)}
-					>
-						Bog'lanish
-					</Button>
-					{status === "authenticated" && (
-						<Button size='sm' variant='outline' onClick={handleSignOut}>
-							Sign Out
+					{session?.user?.role === Role.ADMIN ? (
+						<Button size='sm' onClick={() => (window.location.href = "/admin")}>
+							Admin Panel
+						</Button>
+					) : (
+						<Button
+							size='default'
+							className='hidden md:inline-flex'
+							onClick={() => setClickCount(prev => prev + 1)}
+						>
+							Bog'lanish
 						</Button>
 					)}
 				</div>

@@ -1,3 +1,4 @@
+import Navbar from "@/components/shared/Navbar";
 import ProjectsPageClient from "../_components/productsClient";
 import { getProjects } from "./actions";
 

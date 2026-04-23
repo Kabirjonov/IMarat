@@ -46,9 +46,14 @@ export default function ProductCard({ project }: { project: IProject }) {
 			{/* BASIC INFO */}
 			<h3 className='text-xl font-bold mb-2 flex justify-between'>
 				{project.title}
-				<span className='text-primary text truncate w-1/2 text-right'>
+				<a
+					href={`https://yandex.com/maps/?pt=${project.coords?.[1]},${project.coords?.[0]}&z=15`}
+					target='_blank'
+					rel='noopener noreferrer'
+					className='text-primary text truncate w-1/2 text-right'
+				>
 					{project.address}
-				</span>
+				</a>
 			</h3>
 
 			<p className='text-muted-foreground mb-4 line-clamp-2'>
