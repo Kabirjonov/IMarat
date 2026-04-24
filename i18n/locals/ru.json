@@ -1,5 +1,93 @@
 {
 	"home": {
 		"h1": "Привет, Окунджон!"
+	},
+	"hero": {
+		"title": "Имарат — современная компания по строительству и продаже домов",
+		"description": "Мы строим и продаем современные, надежные и качественные дома.",
+		"viewProjects": "Посмотреть проекты"
+	},
+	"contact": {
+		"title": "Контакты",
+		"mainOffice": "Главный офис",
+		"address": "📍 г. Ташкент, район Юнусабад",
+		"phone": "📞 +998 90 123 45 67",
+		"email": "✉️ info@company.com"
+	},
+	"navbar": {
+		"contact": "Связаться",
+		"adminPanel": "Админ панель",
+		"home": "Главная",
+		"projects": "Проекты",
+		"about": "О нас",
+		"contactLink": "Контакты"
+	},
+	"footer": {
+		"copyright": "© 2026 Имарат. Все права защищены."
+	},
+	"productCard": {
+		"details": "Подробнее",
+		"type": "Тип:",
+		"status": "Статус:",
+		"rooms": "Комнаты:",
+		"area": "Площадь:",
+		"short": "Кратко:",
+		"created": "Создано:"
+	},
+	"login": {
+		"title": "Войдите в свой аккаунт",
+		"description": "Введите ваш email ниже для входа в аккаунт",
+		"email": "Email",
+		"password": "Пароль",
+		"loginButton": "Войти",
+		"emailPlaceholder": "info@imarat.uz"
+	},
+	"projects": {
+		"title": "Проекты",
+		"description": "Управляйте вашими проектами недвижимости",
+		"allProjects": "Все проекты",
+		"id": "ID",
+		"titleColumn": "Название",
+		"statusColumn": "Статус",
+		"typeColumn": "Тип",
+		"addressColumn": "Адрес",
+		"imagesColumn": "Изображения",
+		"actions": "Действия",
+		"edit": "Редактировать",
+		"delete": "Удалить",
+		"signOut": "Выйти"
+	},
+	"projectForm": {
+		"createProject": "Создать проект",
+		"titlePlaceholder": "Название",
+		"descriptionPlaceholder": "Описание",
+		"shortDescPlaceholder": "Краткое описание",
+		"addressPlaceholder": "Адрес",
+		"selectType": "Выберите тип",
+		"selectStatus": "Выберите статус",
+		"imageUrls": "URL изображений",
+		"imageUrlsPlaceholder": "url1, url2, url3",
+		"location": "Местоположение",
+		"createButton": "Создать проект",
+		"updateButton": "Обновить проект",
+		"fillAllFields": "Пожалуйста, заполните все обязательные поля"
+	},
+	"types": {
+		"apartment": "Квартира",
+		"house": "Дом",
+		"commercial": "Коммерческий",
+		"entertainment": "Развлекательный"
+	},
+	"statuses": {
+		"planned": "Запланирован",
+		"construction": "Строительство",
+		"finished": "Завершен"
+	},
+	"search": {
+		"placeholder": "Поиск проектов..."
+	},
+	"common": {
+		"image": "Изображение",
+		"close": "Закрыть"
 	}
 }

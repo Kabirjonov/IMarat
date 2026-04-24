@@ -1,5 +1,93 @@
 {
 	"home": {
 		"h1": "Salom Oxunjon"
+	},
+	"hero": {
+		"title": "Imarat — zamonaviy uy qurish va sotish kompaniyasi",
+		"description": "Biz zamonaviy, ishonchli va sifatli uylarni quramiz va sotamiz.",
+		"viewProjects": "Loyihalarni ko'rish"
+	},
+	"contact": {
+		"title": "Kontaktlar",
+		"mainOffice": "Bosh ofis",
+		"address": "📍 Toshkent shahri, Yunusobod tumani",
+		"phone": "📞 +998 90 123 45 67",
+		"email": "✉️ info@company.com"
+	},
+	"navbar": {
+		"contact": "Bog'lanish",
+		"adminPanel": "Admin panel",
+		"home": "Bosh sahifa",
+		"projects": "Loyihalar",
+		"about": "Biz haqimizda",
+		"contactLink": "Kontaktlar"
+	},
+	"footer": {
+		"copyright": "© 2026 Imarat. Barcha huquqlar himoyalangan."
+	},
+	"productCard": {
+		"details": "Batafsil",
+		"type": "Turi:",
+		"status": "Holati:",
+		"rooms": "Xonalar:",
+		"area": "Maydoni:",
+		"short": "Qisqacha:",
+		"created": "Yaratilgan:"
+	},
+	"login": {
+		"title": "Hisobingizga kiring",
+		"description": "Hisobingizga kirish uchun emailingizni kiriting",
+		"email": "Email",
+		"password": "Parol",
+		"loginButton": "Kirish",
+		"emailPlaceholder": "info@imarat.uz"
+	},
+	"projects": {
+		"title": "Loyihalar",
+		"description": "Ko'chmas mulk loyihalaringizni boshqaring",
+		"allProjects": "Barcha loyihalar",
+		"id": "ID",
+		"titleColumn": "Nomi",
+		"statusColumn": "Holati",
+		"typeColumn": "Turi",
+		"addressColumn": "Manzil",
+		"imagesColumn": "Rasmlar",
+		"actions": "Amallar",
+		"edit": "Tahrirlash",
+		"delete": "O'chirish",
+		"signOut": "Chiqish"
+	},
+	"projectForm": {
+		"createProject": "Loyihani yaratish",
+		"titlePlaceholder": "Nomi",
+		"descriptionPlaceholder": "Tavsifi",
+		"shortDescPlaceholder": "Qisqa tavsif",
+		"addressPlaceholder": "Manzil",
+		"selectType": "Turini tanlang",
+		"selectStatus": "Holatini tanlang",
+		"imageUrls": "Rasm URL'lari",
+		"imageUrlsPlaceholder": "url1, url2, url3",
+		"location": "Joylashuv",
+		"createButton": "Loyihani yaratish",
+		"updateButton": "Loyihani yangilash",
+		"fillAllFields": "Iltimos, barcha majburiy maydonlarni to'ldiring"
+	},
+	"types": {
+		"apartment": "Kvartira",
+		"house": "Uy",
+		"commercial": "Tijorat",
+		"entertainment": "Ko'ngilochar"
+	},
+	"statuses": {
+		"planned": "Rejalashtirilgan",
+		"construction": "Qurilmoqda",
+		"finished": "Tugallangan"
+	},
+	"search": {
+		"placeholder": "Loyihalarni qidirish..."
+	},
+	"common": {
+		"image": "Rasm",
+		"close": "Yopish"
 	}
 }
