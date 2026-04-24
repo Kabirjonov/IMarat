@@ -4,7 +4,8 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import AppProviders from "@/components/providers/AppProviders";
 import { loadTranslations } from "@/lib/translations-loader";
-
+import { cookies } from "next/headers";
+import { localeCookieName, defaultLocale, normalizeLocale } from "@/lib/i18n";
 const jetbrainsMonoHeading = JetBrains_Mono({
 	subsets: ["latin"],
 	variable: "--font-heading",
@@ -27,16 +28,22 @@ export const metadata: Metadata = {
 	description: "Imarat development - zamonaviy qurilish kompaniyasi",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const messages = loadTranslations('uz');
-	
+	const cookieStore = await cookies();
+
+	const rawLocale = cookieStore.get(localeCookieName)?.value;
+
+	const locale = normalizeLocale(rawLocale) || defaultLocale;
+
+	const messages = loadTranslations(locale);
+
 	return (
 		<html
-			lang='uz'
+			lang={locale}
 			className={cn(
 				"h-full",
 				"antialiased",
@@ -48,7 +55,7 @@ export default function RootLayout({
 			)}
 		>
 			<body className='min-h-full flex flex-col'>
-				<AppProviders locale='uz' messages={messages}>
+				<AppProviders locale={locale} messages={messages}>
 					{children}
 				</AppProviders>
 			</body>

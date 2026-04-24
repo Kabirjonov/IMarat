@@ -15,13 +15,13 @@ import { useTranslation } from "react-i18next";
 export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
 	const path = usePathname();
-	const { t } = useTranslation("navbar");
+	const { t } = useTranslation();
 
 	const navLinks = [
-		{ id: "hero", label: t("home") },
-		{ id: "projects", label: t("projects") },
-		{ id: "about", label: t("about") },
-		{ id: "contact", label: t("contactLink") },
+		{ id: "hero", label: t("navbar.home") },
+		{ id: "projects", label: t("navbar.projects") },
+		{ id: "about", label: t("navbar.about") },
+		{ id: "contact", label: t("navbar.contactLink") },
 	];
 
 	const router = useRouter();

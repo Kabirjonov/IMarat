@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
 	const { t } = useTranslation();
-	
+
 	// Debug: Check if translation function works
 	console.log("HeroSection - t function:", typeof t);
 	console.log("HeroSection - hero.title translation:", t("hero.title"));

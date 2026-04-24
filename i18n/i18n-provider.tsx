@@ -20,27 +20,22 @@ export function I18nProvider({
 }: I18nProviderProps) {
 	const i18n = useMemo(() => {
 		const instance = createInstance();
-
 		instance.init({
 			lng: locale,
 			fallbackLng: "uz",
 			resources: {
 				[locale]: {
-					...messages,
+					translation: messages, // ✅ FIX HERE
 				},
 			},
+			ns: ["translation"],
+			defaultNS: "translation",
 			interpolation: {
 				escapeValue: false,
 			},
 			returnNull: false,
 			debug: process.env.NODE_ENV === "development",
 		});
-
-		// Debug: Check if i18n is properly initialized
-		console.log("i18n instance created for locale:", locale);
-		console.log("Available resources:", Object.keys(messages));
-		console.log("Hero translations:", messages.hero);
-
 		return instance;
 	}, [locale, messages]);
 
