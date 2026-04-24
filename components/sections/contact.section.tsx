@@ -1,18 +1,16 @@
 "use client";
-import React from "react";
 import { OfficeImages, socialLinks } from "../shared/Footer";
-
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
-import { FiPlusCircle, FiMapPin } from "react-icons/fi";
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { useTranslation } from "react-i18next";
 export default function ContactSection() {
+	const { t } = useTranslation("contact");
 	return (
 		<section
 			className='w-full py-16 px-4 md:px-10 bg-background rounded-2xl'
 			id='contact'
 		>
 			<h1 className='text-6xl font-bold text-center mb-12 text-secondary-foreground hover:text-primary  transition-colors duration-300'>
-				Kontaktlar
+				{t("title")}
 			</h1>
 			<div className='max-w-[90%] mx-auto grid md:grid-cols-2 gap-10'>
 				<div className='bg-white rounded-2xl shadow overflow-hidden'>
@@ -20,12 +18,12 @@ export default function ContactSection() {
 
 					{/* Info section BELOW images */}
 					<div className='p-5'>
-						<h3 className='text-xl font-semibold mb-3'>Bosh ofis</h3>
+						<h3 className='text-xl font-semibold mb-3'>{t("mainOffice")}</h3>
 
 						<ul className='text-sm text-gray-600 space-y-2 mb-4'>
-							<li>📍 Toshkent shahri, Yunusobod tumani</li>
-							<li>📞 +998 90 123 45 67</li>
-							<li>✉️ info@company.com</li>
+							<li>{t("address")}</li>
+							<li>{t("phone")}</li>
+							<li>{t("email")}</li>
 						</ul>
 
 						<div className='flex gap-3'>

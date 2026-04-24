@@ -18,7 +18,11 @@ import { Label } from "@/components/ui/label";
 
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 import { FiPlusCircle, FiMapPin } from "react-icons/fi";
+import { useProjectTranslations } from "@/lib/translations";
+import { useTranslation } from "react-i18next";
 export default function ProjectForm({ project, onDone }: any) {
+	const { t } = useTranslation("projectForm");
+	const { translateType, translateStatus } = useProjectTranslations();
 	const isEdit = !!project;
 	const [coords, setCoords] = useState<[number, number] | null>(
 		project?.latitude && project?.longitude
@@ -71,7 +75,7 @@ export default function ProjectForm({ project, onDone }: any) {
 			!coords ||
 			!form.images
 		) {
-			alert("Please fill all required fields");
+			alert(t("fillAllFields"));
 			return;
 		}
 
@@ -106,7 +110,7 @@ export default function ProjectForm({ project, onDone }: any) {
 			<CardHeader>
 				<CardTitle className='flex items-center gap-2'>
 					<FiPlusCircle />
-					Create Project
+					{t("createProject")}
 				</CardTitle>
 			</CardHeader>
 
@@ -117,26 +121,26 @@ export default function ProjectForm({ project, onDone }: any) {
 							name='title'
 							value={form.title}
 							onChange={handleChange}
-							placeholder='Title'
+							placeholder={t("titlePlaceholder")}
 						/>
 
 						<Textarea
 							name='description'
 							value={form.description}
 							onChange={handleChange}
-							placeholder='Description'
+							placeholder={t("descriptionPlaceholder")}
 						/>
 						<Input
 							name='shortDesc'
 							value={form.shortDesc}
 							onChange={handleChange}
-							placeholder='Short desc'
+							placeholder={t("shortDescPlaceholder")}
 						/>
 						<Input
 							name='address'
 							value={form.address}
 							onChange={handleChange}
-							placeholder='Address'
+							placeholder={t("addressPlaceholder")}
 						/>
 						{/* <div className='flex items-center justify-between gap-2'> */}
 						<Select
@@ -145,13 +149,19 @@ export default function ProjectForm({ project, onDone }: any) {
 							onValueChange={v => setForm({ ...form, type: v })}
 						>
 							<SelectTrigger>
-								<SelectValue placeholder='Select type' />
+								<SelectValue placeholder={t("selectType")} />
 							</SelectTrigger>
 							<SelectContent>
-								<SelectItem value='apartment'>Apartment</SelectItem>
-								<SelectItem value='house'>House</SelectItem>
-								<SelectItem value='commercial'>Commercial</SelectItem>
-								<SelectItem value='entertainment'>Entertainment</SelectItem>
+								<SelectItem value='apartment'>
+									{translateType("apartment")}
+								</SelectItem>
+								<SelectItem value='house'>{translateType("house")}</SelectItem>
+								<SelectItem value='commercial'>
+									{translateType("commercial")}
+								</SelectItem>
+								<SelectItem value='entertainment'>
+									{translateType("entertainment")}
+								</SelectItem>
 							</SelectContent>
 						</Select>
 						<Select
@@ -160,21 +170,27 @@ export default function ProjectForm({ project, onDone }: any) {
 							onValueChange={v => setForm({ ...form, status: v })}
 						>
 							<SelectTrigger>
-								<SelectValue placeholder='Select status' />
+								<SelectValue placeholder={t("selectStatus")} />
 							</SelectTrigger>
 							<SelectContent>
-								<SelectItem value='planned'>Planned</SelectItem>
-								<SelectItem value='construction'>Construction</SelectItem>
-								<SelectItem value='finished'>Finished</SelectItem>
+								<SelectItem value='planned'>
+									{translateStatus("planned")}
+								</SelectItem>
+								<SelectItem value='construction'>
+									{translateStatus("construction")}
+								</SelectItem>
+								<SelectItem value='finished'>
+									{translateStatus("finished")}
+								</SelectItem>
 							</SelectContent>
 						</Select>
 						<div>
-							<Label>Image Urls</Label>
+							<Label>{t("imageUrls")}</Label>
 							<Textarea
 								name='images'
 								value={form.images}
 								onChange={handleChange}
-								placeholder='url1, url2, url3'
+								placeholder={t("imageUrlsPlaceholder")}
 							/>
 						</div>
 
@@ -183,7 +199,7 @@ export default function ProjectForm({ project, onDone }: any) {
 					<div className='md:col-span-2 space-y-2'>
 						<Label className='flex items-center gap-2'>
 							<FiMapPin />
-							Location
+							{t("location")}
 						</Label>
 
 						<YMaps>
@@ -204,7 +220,7 @@ export default function ProjectForm({ project, onDone }: any) {
 						<input type='hidden' name='longitude' value={coords?.[1] ?? ""} />
 					</div>
 					<Button type='submit'>
-						{isEdit ? "Update Project" : "Create Project"}
+						{isEdit ? t("updateButton") : t("createButton")}
 					</Button>
 				</form>
 			</CardContent>

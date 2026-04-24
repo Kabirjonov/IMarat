@@ -2,11 +2,11 @@
 import { useState, useMemo } from "react";
 import { Search, List } from "lucide-react";
 import Link from "next/link";
-
 import { Input } from "../ui/input";
 import { IProject } from "@/types";
 import ProductCard from "../cards/ProductCard";
 import { ProductCardSkeleton } from "../loadings/ProductCardSkeleton";
+import { useTranslation } from "react-i18next";
 
 const searchLinks = [
 	{
@@ -24,6 +24,7 @@ export default function CardsSection({
 	loading: boolean;
 }) {
 	const [search, setSearch] = useState("");
+	const { t } = useTranslation("search");
 
 	// 🔍 filter qilingan list
 	const filteredProjects = useMemo(() => {
@@ -51,7 +52,7 @@ export default function CardsSection({
 				{/* 🔍 SEARCH */}
 				<div className='flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground'>
 					<Input
-						placeholder='Loyihalarni qidirish...'
+						placeholder={t("placeholder")}
 						className='w-full py-0'
 						value={search}
 						onChange={e => setSearch(e.target.value)}

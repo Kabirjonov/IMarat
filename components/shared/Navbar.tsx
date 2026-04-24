@@ -9,19 +9,20 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { Role } from "@/types";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-	{ id: "hero", label: "Bosh sahifa" },
-	{ id: "projects", label: "Loyihalar" },
-	{ id: "about", label: "Biz haqimizda" },
-	// { id: "#news", label: "Yangiliklar" },
-	{ id: "contact", label: "Kontaktlar" },
-];
+import { DialogDemo } from "../forms/contactForm";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
 	const [scrolled, setScrolled] = useState(false);
-	const [clickCount, setClickCount] = useState(0);
 	const path = usePathname();
+	const { t } = useTranslation("navbar");
+
+	const navLinks = [
+		{ id: "hero", label: t("home") },
+		{ id: "projects", label: t("projects") },
+		{ id: "about", label: t("about") },
+		{ id: "contact", label: t("contactLink") },
+	];
 
 	const router = useRouter();
 	const [activeSection, setActiveSection] = useState("home");
@@ -49,19 +50,7 @@ export default function Navbar() {
 
 		return () => observer.disconnect();
 	}, []);
-	useEffect(() => {
-		if (clickCount === 3) {
-			router.push("/auth");
-			setClickCount(0);
-		}
-		if (clickCount === 0) return;
 
-		const timer = setTimeout(() => {
-			setClickCount(0);
-		}, 1500); // 1.5 sekund ichida bosishi kerak
-
-		return () => clearTimeout(timer);
-	}, [clickCount]);
 	useEffect(() => {
 		let ticking = false;
 
@@ -80,7 +69,6 @@ export default function Navbar() {
 	}, []);
 	const { data: session, status } = useSession();
 	const isAdminPage = path.startsWith("/admin");
-	console.log("Session:", session);
 	return (
 		<motion.nav
 			initial={{ y: -60, opacity: 0 }}
@@ -89,9 +77,6 @@ export default function Navbar() {
 			className='w-full sticky top-0 z-30 bg-background/80 backdrop-blur border-b border-border shadow-sm'
 		>
 			<div className='w-[90%] mx-auto flex items-center justify-between h-16 px-4'>
-				{/* Logo */}
-
-				{/* Navigation links */}
 				<div
 					className={cn(
 						"hidden md:flex gap-6",
@@ -100,8 +85,7 @@ export default function Navbar() {
 				>
 					{navLinks.map(link => (
 						<p
-							// key={link.href}
-							// href={link.href}
+							key={link.id}
 							onClick={() => {
 								document.getElementById(link.id)?.scrollIntoView({
 									behavior: "smooth",
@@ -143,8 +127,7 @@ export default function Navbar() {
 
 				{/* Actions: Language switcher & CTA */}
 				<div className='flex items-center gap-3'>
-					<LanguageSwitcher defaultValue='ru' />
-
+					<LanguageSwitcher />
 					{session?.user?.role === Role.ADMIN ? (
 						isAdminPage ? (
 							<Button size='sm' onClick={() => router.push("/")}>
@@ -152,17 +135,12 @@ export default function Navbar() {
 							</Button>
 						) : (
 							<Button size='sm' onClick={() => router.push("/admin")}>
-								Admin Panel
+								{t("adminPanel")}
 							</Button>
 						)
 					) : null}
-					<Button
-						size='default'
-						className='hidden md:inline-flex'
-						onClick={() => setClickCount(prev => prev + 1)}
-					>
-						Bog'lanish
-					</Button>
+
+					<DialogDemo />
 				</div>
 			</div>
 		</motion.nav>

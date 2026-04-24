@@ -1,16 +1,21 @@
 "use client";
-import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function HeroSection() {
-	// const t = getTranslations("home");
+	const { t } = useTranslation();
+	
+	// Debug: Check if translation function works
+	console.log("HeroSection - t function:", typeof t);
+	console.log("HeroSection - hero.title translation:", t("hero.title"));
+	console.log("HeroSection - title translation:", t("title"));
+
 	return (
 		<section
 			id='hero'
-			className='relative flex flex-col items-center justify-center min-h-[60vh] py-16 px-4 text-center'
+			className='relative flex flex-col items-center justify-center min-h-[80vh] py-16 px-4 text-center'
 		>
 			{/* Background image */}
 			<Image
@@ -28,16 +33,20 @@ export default function HeroSection() {
 				className='relative z-20 max-w-2xl mx-auto text-white'
 			>
 				<h1 className='text-4xl md:text-5xl font-extrabold mb-4'>
-					Imarat — zamonaviy uy qurish va sotish kompaniyasi
+					{t("hero.title")}
 				</h1>
-				<p className='text-lg md:text-xl mb-8'>
-					Biz zamonaviy, ishonchli va sifatli uylarni quramiz va sotamiz.
-				</p>
-				<Link href='#projects'>
-					<Button size='lg' className='px-8 py-6'>
-						Loyihalarni ko‘rish
-					</Button>
-				</Link>
+				<p className='text-lg md:text-xl mb-8'>{t("hero.description")}</p>
+				<Button
+					size='lg'
+					className='px-8 py-6'
+					onClick={() => {
+						document.getElementById("projects")?.scrollIntoView({
+							behavior: "smooth",
+						});
+					}}
+				>
+					{t("hero.viewProjects")}
+				</Button>
 			</motion.div>
 			{/* <motion.div
 				initial={{ opacity: 0, scale: 0.95 }}

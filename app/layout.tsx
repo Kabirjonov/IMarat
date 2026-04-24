@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import AppProviders from "@/components/providers/AppProviders";
+import { loadTranslations } from "@/lib/translations-loader";
 
 const jetbrainsMonoHeading = JetBrains_Mono({
 	subsets: ["latin"],
@@ -31,6 +32,8 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const messages = loadTranslations('uz');
+	
 	return (
 		<html
 			lang='uz'
@@ -45,7 +48,9 @@ export default function RootLayout({
 			)}
 		>
 			<body className='min-h-full flex flex-col'>
-				<AppProviders>{children}</AppProviders>
+				<AppProviders locale='uz' messages={messages}>
+					{children}
+				</AppProviders>
 			</body>
 		</html>
 	);

@@ -1,6 +1,7 @@
 "use client";
 import { IProject } from "@/types";
 import { useRef } from "react";
+import { useProjectTranslations } from "@/lib/translations";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Button } from "../ui/button";
@@ -13,8 +14,11 @@ import {
 	DialogDescription,
 	DialogTrigger,
 } from "../ui/dialog";
+import { useTranslation } from "react-i18next";
 
 export default function ProductCard({ project }: { project: IProject }) {
+	const { t } = useTranslation("productCard");
+	const { translateType, translateStatus } = useProjectTranslations();
 	const plugin = useRef(
 		Autoplay({
 			delay: 2500,
@@ -68,7 +72,7 @@ export default function ProductCard({ project }: { project: IProject }) {
 			{/* 🔥 DIALOG */}
 			<Dialog>
 				<DialogTrigger asChild>
-					<Button className='w-full mt-3'>Batafsil</Button>
+					<Button className='w-full mt-3'>{t("details")}</Button>
 				</DialogTrigger>
 
 				<DialogContent className='max-w-3xl'>
@@ -99,34 +103,34 @@ export default function ProductCard({ project }: { project: IProject }) {
 						{/* EXTRA DATA */}
 						<div className='grid grid-cols-2 gap-4 text-sm'>
 							<p>
-								<b>Type:</b> {project.type}
+								<b>{t("type")}</b> {translateType(project.type)}
 							</p>
 							<p>
-								<b>Status:</b> {project.status}
+								<b>{t("status")}</b> {translateStatus(project.status)}
 							</p>
 
 							{project.rooms && (
 								<p>
-									<b>Rooms:</b> {project.rooms}
+									<b>{t("rooms")}</b> {project.rooms}
 								</p>
 							)}
 
 							{project.area && (
 								<p>
-									<b>Area:</b> {project.area} m²
+									<b>{t("area")}</b> {project.area} m²
 								</p>
 							)}
 
 							{project.shortDesc && (
 								<p className='col-span-2'>
-									<b>Short:</b> {project.shortDesc}
+									<b>{t("short")}</b> {project.shortDesc}
 								</p>
 							)}
 						</div>
 
 						{/* DATE */}
 						<p className='text-xs text-muted-foreground'>
-							Yaratilgan: {new Date(project.createdAt).toLocaleString()}
+							{t("created")} {new Date(project.createdAt).toLocaleString()}
 						</p>
 					</div>
 				</DialogContent>

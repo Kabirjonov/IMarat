@@ -18,14 +18,18 @@ import { Badge } from "@/components/ui/badge";
 import { deleteProject } from "../admin/actions";
 import ProjectForm from "./projectForm";
 import { signOut, useSession } from "next-auth/react";
+import { useProjectTranslations } from "@/lib/translations";
+import { useTranslation } from "react-i18next";
 
 export default function ProjectsPageClient({ initialProjects }: any) {
 	const [projects, setProjects] = useState(initialProjects);
 	const [editing, setEditing] = useState<any>(null);
 	const { status } = useSession();
+	const { translateType, translateStatus } = useProjectTranslations();
 	const handleEdit = (project: any) => {
 		setEditing(project);
 	};
+	const { t } = useTranslation("projects");
 
 	const handleDelete = async (id: string) => {
 		await deleteProject(id);
@@ -44,15 +48,13 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 					variant='destructive'
 					onClick={handleSignOut}
 				>
-					Sign Out
+					{t("signOut")}
 				</Button>
 			)}
 			{/* HEADER */}
 			<div>
-				<h1 className='text-3xl font-bold'>Projects</h1>
-				<p className='text-muted-foreground'>
-					Manage your real estate projects
-				</p>
+				<h1 className='text-3xl font-bold'>{t("title")}</h1>
+				<p className='text-muted-foreground'>{t("description")}</p>
 			</div>
 
 			{/* SINGLE FORM (CREATE + UPDATE) */}
@@ -65,22 +67,22 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 			{/* TABLE */}
 			<Card>
 				<CardHeader>
-					<CardTitle>All Projects</CardTitle>
+					<CardTitle>{t("allProjects")}</CardTitle>
 				</CardHeader>
 
 				<CardContent>
 					<Table>
 						<TableHeader>
 							<TableRow>
-								<TableHead>ID</TableHead>
+								<TableHead>{t("id")}</TableHead>
 
-								<TableHead>Title</TableHead>
-								<TableHead>Status</TableHead>
-								<TableHead>Type</TableHead>
-								<TableHead>Address</TableHead>
-								<TableHead>Images</TableHead>
+								<TableHead>{t("titleColumn")}</TableHead>
+								<TableHead>{t("statusColumn")}</TableHead>
+								<TableHead>{t("typeColumn")}</TableHead>
+								<TableHead>{t("addressColumn")}</TableHead>
+								<TableHead>{t("imagesColumn")}</TableHead>
 
-								<TableHead className='text-end'>Actions</TableHead>
+								<TableHead className='text-end'>{t("actions")}</TableHead>
 							</TableRow>
 						</TableHeader>
 
@@ -93,9 +95,11 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 									<TableCell className='font-medium'>{p.title}</TableCell>
 
 									<TableCell>
-										<Badge>{p.status}</Badge>
+										<Badge>{translateStatus(p.status)}</Badge>
 									</TableCell>
-									<TableCell className='font-medium'>{p.type}</TableCell>
+									<TableCell className='font-medium'>
+										{translateType(p.type)}
+									</TableCell>
 									<TableCell className='font-medium'>
 										<a
 											// href={`https://yandex.com/maps/?pt=${p.latitude},${p.longitude}&z=15`}
@@ -136,7 +140,7 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 											variant='secondary'
 											onClick={() => handleEdit(p)}
 										>
-											Edit
+											{t("edit")}
 										</Button>
 
 										<Button
@@ -144,7 +148,7 @@ export default function ProjectsPageClient({ initialProjects }: any) {
 											variant='destructive'
 											onClick={() => handleDelete(p.id)}
 										>
-											Delete
+											{t("delete")}
 										</Button>
 									</TableCell>
 								</TableRow>

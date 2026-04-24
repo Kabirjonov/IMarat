@@ -1,13 +1,24 @@
 import { ReactNode } from "react";
-import { NextIntlClientProvider } from "next-intl";
-interface Props {
-	children: ReactNode;
-}
 import { SessionProvider } from "next-auth/react";
-export default async function AppProviders({ children }: Props) {
+
+import { I18nProvider } from "@/i18n/i18n-provider";
+import type { Locale } from "@/lib/i18n";
+
+type AppProvidersProps = {
+	children: ReactNode;
+	locale: Locale;
+	messages: any;
+};
+export default function AppProviders({
+	children,
+	locale,
+	messages,
+}: AppProvidersProps) {
 	return (
 		<SessionProvider>
-			<NextIntlClientProvider>{children}</NextIntlClientProvider>
+			<I18nProvider locale={locale} messages={messages}>
+				{children}
+			</I18nProvider>
 		</SessionProvider>
 	);
 }

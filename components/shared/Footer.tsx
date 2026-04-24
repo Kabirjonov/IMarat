@@ -1,6 +1,9 @@
+"use client";
 import { Send } from "lucide-react";
 import { FaInstagram, FaPhone, FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+
 export const OfficeImages = [
 	"/office.webp",
 	"/office.webp",
@@ -29,6 +32,7 @@ export const socialLinks = [
 	{ name: "Phone", url: "tel:+998901234567", icon: FaPhone },
 ];
 export default function Footer() {
+	const { t } = useTranslation("footer");
 	return (
 		<footer id='contact'>
 			<div className='max-w-[90%] mx-auto flex justify-center items-center py-6 '>
@@ -42,7 +46,7 @@ export default function Footer() {
 						>
 							<link.icon
 								size={28}
-								className='text-muted-foreground hover:text-primary transition-colors duration-300 hover:underline'
+								className='text-muted-foreground hover:text-primary transition-colors duration-300 '
 							/>
 						</a>
 					))}
@@ -101,7 +105,7 @@ export default function Footer() {
 
 				{/* Bottom text */}
 				<div className='text-center border-t border-muted text-sm text-gray-400  mt-6 pt-4'>
-					© 2026 Imarat. All rights reserved.
+					{t("copyright")}
 				</div>
 			</div>
 		</footer>

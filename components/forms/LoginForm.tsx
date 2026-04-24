@@ -14,39 +14,38 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { loginAction } from "@/app/auth/actions";
+import { useTranslation } from "react-i18next";
 
 export function LoginForm({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
 	const [showPassword, setShowPassword] = useState(false);
-
+	const { t } = useTranslation("loginForm");
 	return (
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
 			<Card>
 				<CardHeader>
-					<CardTitle>Login to your account</CardTitle>
-					<CardDescription>
-						Enter your email below to login to your account
-					</CardDescription>
+					<CardTitle>{t("title")}</CardTitle>
+					<CardDescription>{t("description")}</CardDescription>
 				</CardHeader>
 
 				<CardContent>
 					<form action={loginAction}>
 						<FieldGroup>
 							<Field>
-								<FieldLabel htmlFor='email'>Email</FieldLabel>
+								<FieldLabel htmlFor='email'>{t("email")}</FieldLabel>
 								<Input
 									id='email'
 									type='email'
 									name='email'
-									placeholder='info@imarat.uz'
+									placeholder={t("emailPlaceholder")}
 									required
 								/>
 							</Field>
 
 							<Field>
-								<FieldLabel htmlFor='password'>Password</FieldLabel>
+								<FieldLabel htmlFor='password'>{t("password")}</FieldLabel>
 
 								<div className='relative w-full'>
 									<Input
@@ -70,7 +69,7 @@ export function LoginForm({
 							</Field>
 
 							<Field>
-								<Button type='submit'>Login</Button>
+								<Button type='submit'>{t("loginButton")}</Button>
 							</Field>
 						</FieldGroup>
 					</form>
