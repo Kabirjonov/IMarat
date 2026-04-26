@@ -10,9 +10,17 @@
 	"contact": {
 		"title": "Контакты",
 		"mainOffice": "Главный офис",
-		"address": "📍 г. Ташкент, район Юнусабад",
-		"phone": "📞 +998 90 123 45 67",
-		"email": "✉️ info@company.com"
+		"address": "г. Ташкент, район Юнусабад",
+		"phone": "+998 90 123 45 67",
+		"email": "info@company.com",
+		"name": "Имя",
+		"namePlaceholder": "Ваше имя",
+		"phoneLabel": "Телефон",
+		"phonePlaceholder": "+998...",
+		"description": "Описание",
+		"descriptionPlaceholder": "Напишите ваше сообщение",
+		"cancel": "Отмена",
+		"submit": "Отправить"
 	},
 	"navbar": {
 		"contact": "Связаться",

@@ -95,7 +95,15 @@ export default function ShowPDFSection() {
 										loop
 										playsInline
 										controls
-										className='w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover hidden group-hover:block'
+										onMouseEnter={e => {
+											e.currentTarget.play();
+											e.currentTarget.muted = false;
+										}}
+										onMouseLeave={e => {
+											e.currentTarget.muted = true;
+											e.currentTarget.play();
+										}}
+										className='w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover'
 									/>
 									<a
 										download
@@ -104,15 +112,15 @@ export default function ShowPDFSection() {
 									>
 										<Button variant='link'>Download PDF</Button>
 									</a>
-									<img
+									{/* <img
 										src={item.image}
 										alt={item.title}
 										className='w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover group-hover:hidden'
 										// className='w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover hidden group-hover:block transition-transform duration-300 group-hover:scale-105'
-									/>
+									/> */}
 
 									{/* OVERLAY */}
-									<div className='absolute inset-0 group-hover:opacity-0 opacity-100 transition duration-300 flex flex-col justify-center items-center p-4'>
+									{/* <div className='absolute inset-0 group-hover:opacity-0 opacity-100 transition duration-300 flex flex-col justify-center items-center p-4'>
 										<h2 className='text-muted text-xl font-bold'>
 											{item.title}
 										</h2>
@@ -126,7 +134,7 @@ export default function ShowPDFSection() {
 											</span>
 											• {item.createdAt}
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</CarouselItem>
 						))}

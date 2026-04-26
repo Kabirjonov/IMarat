@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 
 export function SignOutButton() {
-	const { t } = useTranslation("projects");
+	const { t } = useTranslation();
 
 	return (
 		<Button onClick={() => signOut({ redirectTo: "/auth" })} type='button'>
-			{t("signOut")}
+			{t("projects.signOut")}
 		</Button>
 	);
 }

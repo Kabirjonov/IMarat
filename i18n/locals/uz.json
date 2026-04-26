@@ -10,9 +10,17 @@
 	"contact": {
 		"title": "Kontaktlar",
 		"mainOffice": "Bosh ofis",
-		"address": "📍 Toshkent shahri, Yunusobod tumani",
-		"phone": "📞 +998 90 123 45 67",
-		"email": "✉️ info@company.com"
+		"address": "Toshkent shahri, Yunusobod tumani",
+		"phone": "+998 90 123 45 67",
+		"email": "info@company.com",
+		"name": "Ism",
+		"namePlaceholder": "Ismingiz",
+		"phoneLabel": "Telefon raqam",
+		"phonePlaceholder": "+998...",
+		"description": "Izoh",
+		"descriptionPlaceholder": "Qisqacha yozib qoldiring",
+		"cancel": "Bekor qilish",
+		"submit": "Yuborish"
 	},
 	"navbar": {
 		"contact": "Bog'lanish",

@@ -17,10 +17,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { contactSchema } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function DialogDemo() {
 	const [clickCount, setClickCount] = useState(0);
 	const router = useRouter();
+	const { t } = useTranslation();
 
 	const [form, setForm] = useState({
 		name: "",
@@ -88,58 +90,58 @@ export function DialogDemo() {
 						className='hidden md:inline-flex'
 						onClick={() => setClickCount(prev => prev + 1)}
 					>
-						Boglanish
+						{t("navbar.contact")}
 					</Button>
 				</DialogTrigger>
 
 				<DialogContent className='sm:max-w-sm'>
 					<DialogHeader>
-						<DialogTitle>Biz bilan bog‘laning</DialogTitle>
+						<DialogTitle>{t("contact.title")}</DialogTitle>
 						<DialogDescription>
-							Ma’lumotlaringizni qoldiring, operator siz bilan bog‘lanadi.
+							{t("contact.description")}
 						</DialogDescription>
 					</DialogHeader>
 
 					<FieldGroup>
 						<Field>
-							<Label htmlFor='name'>Ism</Label>
+							<Label htmlFor='name'>{t("contact.name")}</Label>
 							<Input
 								id='name'
 								name='name'
 								value={form.name}
 								onChange={handleChange}
-								placeholder='Ismingiz'
+								placeholder={t("contact.namePlaceholder")}
 							/>
 						</Field>
 
 						<Field>
-							<Label htmlFor='phone'>Telefon raqam</Label>
+							<Label htmlFor='phone'>{t("contact.phone")}</Label>
 							<Input
 								id='phone'
 								name='phone'
 								value={form.phone}
 								onChange={handleChange}
-								placeholder='+998...'
+								placeholder={t("contact.phonePlaceholder")}
 							/>
 						</Field>
 
 						<Field>
-							<Label htmlFor='description'>Izoh</Label>
+							<Label htmlFor='description'>{t("contact.description")}</Label>
 							<Textarea
 								id='description'
 								name='description'
 								value={form.description}
 								onChange={handleChange}
-								placeholder='Qisqacha yozib qoldiring'
+								placeholder={t("contact.descriptionPlaceholder")}
 							/>
 						</Field>
 					</FieldGroup>
 
 					<DialogFooter>
 						<DialogClose asChild>
-							<Button variant='outline'>Bekor qilish</Button>
+							<Button variant='outline'>{t("contact.cancel")}</Button>
 						</DialogClose>
-						<Button type='submit'>Yuborish</Button>
+						<Button type='submit'>{t("contact.submit")}</Button>
 					</DialogFooter>
 				</DialogContent>
 			</form>

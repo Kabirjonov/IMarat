@@ -61,12 +61,13 @@ export default function Footer() {
 				>
 					{/* Left */}
 					<div>
-						<img
-							src='/whitelogo.png'
-							alt='Company Logo'
-							className='w-52 mb-4'
-						/>
-						{/* <h2 className='text-white text-lg font-semibold mb-3'>maker</h2> */}
+						<div className='w-full flex md:justify-start justify-center'>
+							<img
+								src='/whitelogo.png'
+								alt='Company Logo'
+								className='w-52 mb-4 '
+							/>
+						</div>
 						<p className='text-sm leading-relaxed'>
 							Maecenas eu placerat ante. Fusce ut neque justo, et aliquet enim.
 							In hac habitasse platea dictumst. Nullam commodo eu erat.
