@@ -7,15 +7,15 @@ import ContactSection from "@/components/sections/contact.section";
 import { getProjects } from "@/app/admin/actions";
 import { IProject } from "@/types";
 export default async function HomePage() {
-	const projects: IProject[] = await getProjects();
-	return (
-		<>
-			<Navbar />
-			<HeroSection />
-			<CardsSection projects={projects} loading={false} />
-			<ShowPDFSection />
-			<ContactSection />
-			<Footer />
-		</>
-	);
+  const projects: IProject[] = await getProjects();
+  return (
+    <>
+      <Navbar />
+      <HeroSection />
+      <CardsSection projects={projects} loading={false} />
+      <ShowPDFSection />
+      <ContactSection />
+      <Footer />
+    </>
+  );
 }

@@ -95,62 +95,71 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 export default function HeroSection() {
-	return (
-		<section className='h-[80vh] w-full'>
-			<Swiper
-				pagination={{ clickable: true }}
-				direction='vertical'
-				loop={false}
-				speed={1000}
-				autoplay={{
-					delay: 3000,
-					disableOnInteraction: false,
-				}}
-				modules={[Pagination, Autoplay]}
-				className='h-full'
-			>
-				<SwiperSlide>
-					<div className='relative w-full h-full'>
-						<Image
-							priority
-							src='/hero_bg.jpg'
-							alt='slide1'
-							fill
-							className='object-cover'
-						/>
-					</div>
-				</SwiperSlide>
-				<SwiperSlide>
-					<div className='slide'>
-						{[...Array(8)].map((_, i) => (
-							<div
-								key={i}
-								className='slice'
-								style={{
-									backgroundImage: "url(/hero_bg.jpg)",
-									left: `${i * 12.5}%`,
-									animationDelay: `${i * 0.1}s`,
-								}}
-							/>
-						))}
-					</div>
-				</SwiperSlide>
-				<SwiperSlide>
-					<div className='slide'>
-						{[...Array(8)].map((_, i) => (
-							<div
-								key={i}
-								className='slice-horizontal'
-								style={{
-									backgroundImage: "url(/hero_bg.jpg)",
-									left: `${i * 12.5}%`,
-									animationDelay: `${i * 0.1}s`,
-								}}
-							/>
-						))}
-					</div>
-				</SwiperSlide>
-			</Swiper>
-		</section>
-	);
+  return (
+    <section id="hero" className="relative -mt-16 h-[100vh] w-full">
+      <div className="relative w-full h-full">
+        <Image
+          priority
+          src="/hero_bg.jpg"
+          alt="slide1"
+          fill
+          className="object-cover"
+        />
+      </div>
+      {/*<Swiper
+        pagination={{ clickable: true }}
+        direction="vertical"
+        loop={false}
+        speed={1000}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[Pagination, Autoplay]}
+        className="h-full"
+      >
+        <SwiperSlide>
+          <div className="relative w-full h-full">
+            <Image
+              priority
+              src="/hero_bg.jpg"
+              alt="slide1"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="slide">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="slice"
+                style={{
+                  backgroundImage: "url(/hero_bg.jpg)",
+                  left: `${i * 12.5}%`,
+                  animationDelay: `${i * 0.1}s`,
+                }}
+              />
+            ))}
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="slide">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="slice-horizontal"
+                style={{
+                  backgroundImage: "url(/hero_bg.jpg)",
+                  left: `${i * 12.5}%`,
+                  animationDelay: `${i * 0.1}s`,
+                }}
+              />
+            ))}
+          </div>
+        </SwiperSlide>
+      </Swiper>*/}
+    </section>
+  );
 }

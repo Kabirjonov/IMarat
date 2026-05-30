@@ -3,22 +3,23 @@ import { SessionProvider } from "next-auth/react";
 
 import { I18nProvider } from "@/i18n/i18n-provider";
 import type { Locale } from "@/lib/i18n";
-
+import { Toaster } from "@/components/ui/sonner";
 type AppProvidersProps = {
-	children: ReactNode;
-	locale: Locale;
-	messages: any;
+  children: ReactNode;
+  locale: Locale;
+  messages: any;
 };
 export default function AppProviders({
-	children,
-	locale,
-	messages,
+  children,
+  locale,
+  messages,
 }: AppProvidersProps) {
-	return (
-		<SessionProvider>
-			<I18nProvider locale={locale} messages={messages}>
-				{children}
-			</I18nProvider>
-		</SessionProvider>
-	);
+  return (
+    <SessionProvider>
+      <I18nProvider locale={locale} messages={messages}>
+        {children}
+        <Toaster />
+      </I18nProvider>
+    </SessionProvider>
+  );
 }

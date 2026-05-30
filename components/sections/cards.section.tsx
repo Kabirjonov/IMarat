@@ -7,37 +7,34 @@ import { IProject } from "@/types";
 import ProductCard from "../cards/ProductCard";
 import { ProductCardSkeleton } from "../loadings/ProductCardSkeleton";
 import { useTranslation } from "react-i18next";
-
 const searchLinks = [
-	{
-		label: "KATEGORIYA bo‘yicha qidirish",
-		icon: List,
-		href: "/search?by=category",
-	},
+  {
+    label: "KATEGORIYA bo‘yicha qidirish",
+    icon: List,
+    href: "/search?by=category",
+  },
 ];
-
 export default function CardsSection({
-	projects,
-	loading,
+  projects,
+  loading,
 }: {
-	projects: IProject[];
-	loading: boolean;
+  projects: IProject[];
+  loading: boolean;
 }) {
-	const [search, setSearch] = useState("");
-	const { t } = useTranslation("search");
+  const [search, setSearch] = useState("");
+  const { t } = useTranslation("search");
 
-	// 🔍 filter qilingan list
-	const filteredProjects = useMemo(() => {
-		return projects.filter(project =>
-			project.title?.toLowerCase().includes(search.toLowerCase()),
-		);
-	}, [projects, search]);
-
-	return (
-		<section id='projects' className='max-w-[90%] mx-auto w-full '>
-			<div className='w-full flex items-center justify-between py-6 px-2'>
-				<div className='flex gap-4'>
-					{searchLinks.map(item => (
+  // 🔍 filter qilingan list
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) =>
+      project.title?.toLowerCase().includes(search.toLowerCase()),
+    );
+  }, [projects, search]);
+  return (
+    <section id="projects" className="max-w-[90%] mx-auto w-full py-2 ">
+      <div className="w-full flex items-center justify-between py-6 px-2">
+        <div className="flex gap-4">
+          {/*{searchLinks.map(item => (
 						<Link
 							key={item.href}
 							href={item.href}
@@ -46,40 +43,38 @@ export default function CardsSection({
 							<item.icon className='w-5 h-5 text-primary group-hover:scale-110 transition-transform' />
 							{item.label}
 						</Link>
-					))}
-				</div>
+					))}*/}
+        </div>
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground">
+          <Input
+            placeholder={t("placeholder")}
+            className="w-full py-0"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Search className="w-4 h-4" />
+        </div>
+      </div>
 
-				{/* 🔍 SEARCH */}
-				<div className='flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-foreground'>
-					<Input
-						placeholder={t("placeholder")}
-						className='w-full py-0'
-						value={search}
-						onChange={e => setSearch(e.target.value)}
-					/>
-					<Search className='w-4 h-4' />
-				</div>
-			</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {loading &&
+          Array.from({ length: 8 }).map((_, i) => (
+            <ProductCardSkeleton key={i} />
+          ))}
 
-			<div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-				{loading &&
-					Array.from({ length: 8 }).map((_, i) => (
-						<ProductCardSkeleton key={i} />
-					))}
+        {/* EMPTY */}
+        {!loading && filteredProjects.length === 0 && (
+          <div className="col-span-full text-center py-10 text-muted-foreground">
+            Ma’lumot topilmadi
+          </div>
+        )}
 
-				{/* EMPTY */}
-				{!loading && filteredProjects.length === 0 && (
-					<div className='col-span-full text-center py-10 text-muted-foreground'>
-						Ma’lumot topilmadi
-					</div>
-				)}
-
-				{/* DATA */}
-				{!loading &&
-					filteredProjects.map((project, index) => (
-						<ProductCard key={index} project={project} />
-					))}
-			</div>
-		</section>
-	);
+        {/* DATA */}
+        {!loading &&
+          filteredProjects.map((project, index) => (
+            <ProductCard key={index} project={project} />
+          ))}
+      </div>
+    </section>
+  );
 }
